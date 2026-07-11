@@ -3,8 +3,13 @@ const http = require('http');
 const port = 5000;
 
 const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'content-type' : 'text/plain'});
-    res.end(`Server is running on port: ${port}`);
+    if (req.url === '/') {
+        res.writeHead(200, { 'content-type' : 'text/plain'});
+        res.end(`This is Home Page`);
+    } else {
+        res.writeHead(404, { 'content-type' : 'text/plain'});
+        res.end(`404 Not Found`);
+    }
 });
 
 server.listen(port, () => {
